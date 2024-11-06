@@ -1,24 +1,29 @@
 import requests
-import json
 import datetime
+import json
 
-lst = []
 
-for page in range(100):
-    res = requests.get(f'https://bff-service.rtbf.be/oaos/v1.5/pages/en-continu?_page={page}&_limit=100').text
+def scraper(lst = []):
+    for page in range(100):
+        res = requests.get(f'https://bff-service.rtbf.be/oaos/v1.5/pages/en-continu?_page={page}&_limit=100').text
 
-    for a in json.loads(res)["data"]["articles"]:
-        dict = {
-            'label' : a['dossierLabel'],
-            'title' : a['title'],
-            'summary' : a['summary'],
-            'upload_date' : str(datetime.fromisoformat(a['publishedFrom']))[:16]
-        }
+        for a in json.loads(res)["data"]["articles"]:
+            dict = {
+                'label' : a['dossierLabel'].lower(),
+                'title' : a['title'].lower(),
+                'summary' : a['summary'].lower(),
+                'upload_date' : str(datetime.datetime.fromisoformat(a['publishedFrom']))[:16]
+            }
 
-        lst.append(dict)
+            lst.append(dict)
+    return lst
 
-with open('articles.json', 'w') as f:
-    json.dump(lst, f, ensure_ascii=False, indent=4)
+def save_file(data):
+    with open('articles.json', 'w') as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
+
+data = scraper()
+save_file(data)
 
 
 
