@@ -25,18 +25,20 @@ def remove_accents(text):
     return ''.join(c for c in unicodedata.normalize('NFD', text) if unicodedata.category(c) != 'Mn')
 
 
-def apply_func(articles_list = []):
-    for row in json_data.iterrows():
+def apply_func(json_data):
+    articles_list=[]
+    for index, row in json_data.iterrows():
         dic = {
-            'label' : clean_text(remove_accents(row['label'])),
-            'title' : clean_text(remove_accents(row['title'])),
-            'upload_date' : row['upload_date']
+            'label': clean_text(remove_accents(row['label'])),
+            'title': clean_text(remove_accents(row['title'])),
+            'upload_date': row['upload_date']
         }
         articles_list.append(dic)
     return articles_list
 
+
 def save_json(articles_lst):
-    with open('clean_articles.json', 'w', encoding='utf-8') as f:
+    with open('data/clean_articles.json', 'w', encoding='utf-8') as f:
         json.dump(articles_lst, f, ensure_ascii=False, indent=4)
 
 

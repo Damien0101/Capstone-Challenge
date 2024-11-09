@@ -7,6 +7,8 @@
 
 #### *pytrends* provides access to Google Trends data
 
+#### use markdown in streamlit to create bullet points etc..
+
 # Mission objectives 🎯
 
 ## 👨‍🏫 Instructions

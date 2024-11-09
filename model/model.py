@@ -1,19 +1,14 @@
-import pandas as pd
-import unicodedata
-import spacy
+from pytrends.request import TrendReq
+from bertopic import BERTopic
 
 
-json_data = pd.read_json('articles.json')
+pytrends = TrendReq(hl='fr-FR', tz=360)
 
-# spacy.cli.download('fr_core_news_sm') to run once to install pckgs
-nlp = spacy.load("fr_core_news_sm")
+keywords = ["Trump"]
+pytrends.build_payload(keywords, cat=0, timeframe='today 12-m')
 
 
-def clean_text(json_data = json_data):
-    cpt = 0
-    for summary in json_data['summary']:
-        print(type(summary))
-        cpt += 1
-        print(cpt)
+trend_data = pytrends.interest_over_time()
 
-print(clean_text())
+print(trend_data, type(trend_data))
+
