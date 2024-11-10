@@ -2,9 +2,8 @@ from bertopic import BERTopic
 
 
 articles = [
-    "L'IA progresse dans le domaine médical...",
-    "L'IA et la robotique deviennent de plus en plus populaires...",
-    "De nombreuses industries adoptent l'IA..."
+    "le domaine médical...",
+    "la robotique..."
 ]
 
 topic_model = BERTopic()

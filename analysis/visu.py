@@ -1,9 +1,12 @@
+import pandas as pd
+import plotly.express as px
 from pytrends.request import TrendReq
 from bertopic import BERTopic
 from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
 
-keywords = ["Donald Trump"]
+
+keywords = ["trump"]
 
 pytrends = TrendReq(hl='fr-FR', tz=360)
 
@@ -18,14 +21,13 @@ day_month = [date.strftime('%m-%d') for date in dates]
 
 keyword_trend_list = trend_data[trend_data.columns[0]].tolist()
 
-plt.figure(figsize=(10, 5))
-plt.plot(day_month, keyword_trend_list, marker='o', linestyle='-')
-plt.xlabel('date')
-plt.ylabel('trend Value')
-plt.title(f'trend over time for keyword "{keywords[0]}"')
-plt.xticks(rotation=45)
-plt.tight_layout()
-plt.show()
+data_lst = [day_month, keyword_trend_list]
 
-# print(keyword_trend_list)
-# print(day_month)
+df = pd.DataFrame(data_lst).transpose()
+df.columns = ['date', 'value (%)']
+
+print(df.head())
+
+fig = px.area(df, x="date", y="value (%)", color="value (%)", line_group="value (%)")
+fig.update_layout(title = f'Trend of "{keywords[0]}" Over the Last 3 Months', xaxis_tickangle=-45, width=1000, height=500)
+fig.show()
