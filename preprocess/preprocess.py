@@ -4,7 +4,8 @@ import spacy
 import json
 
 
-def clean_text(text, nlp = spacy.load("fr_core_news_sm")):
+def clean_text(text):
+    nlp = spacy.load("fr_core_news_sm")
     # spacy.cli.download('fr_core_news_sm') to run once to install pckgs
     text = text.replace("'", " ")    
     
@@ -27,6 +28,12 @@ def remove_accents(text):
 
 def apply_func(json_data):
     articles_list=[]
+    
+    for sublist in json_data:
+        for dictionary in sublist:
+            if '' in dictionary:
+                dictionary['label'] = dictionary.pop('')
+    
     for index, row in json_data.iterrows():
         dic = {
             'label': clean_text(remove_accents(row['label'])),
@@ -38,7 +45,7 @@ def apply_func(json_data):
 
 
 def save_json(articles_lst):
-    with open('data/clean_articles.json', 'w', encoding='utf-8') as f:
+    with open('data/clean_articlessss.json', 'w', encoding='utf-8') as f:
         json.dump(articles_lst, f, ensure_ascii=False, indent=4)
 
 

@@ -20,7 +20,7 @@ with st.sidebar:
     st.markdown("This data come from [Google Trends](https://trends.google.com/trends/)")
 
 
-pytrends = TrendReq(hl='fr-FR', tz=360)
+pytrends = TrendReq(hl='fr-FR', tz=360, retries=5)
 user_input = st.text_input(label='**Enter a word/sentence**')
 
 if user_input:

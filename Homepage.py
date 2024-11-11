@@ -17,7 +17,7 @@ st.markdown("""
 
 st.subheader("📈 Trend tracking")
 st.markdown("""
-Analyze the popularity of keyword(s) over time. See if it’s currently trending, identify peak interest periods, and plan content accordingly.
+Analyze the popularity of keyword(s) over time. See if it’s currently trending, identify peak interest periods, and plan content based on those graph.
 """)
 
 
