@@ -8,14 +8,16 @@ from datetime import datetime, timedelta
 import plotly.express as px
 
 st.title("Trend tracker 📈")
-st.markdown("##### Easily discover if a word or phrase is trending with this app. Enter a keyword or sentence and see if it’s gaining popularity. Made for journalists looking to choose articles with current trends, the app provides a visual timeline of the trend’s activity helping you identify the best topics to cover.")
 
 with st.sidebar:
-    st.title('⚙️ Settings')
-    st.sidebar.write("**Tip**: Try shorter date ranges to focus on recent changes in trends.")
+    st.write('# ⚙️ Settings')
+    st.write("**Tip**: Try shorter date ranges to focus on recent changes in trends.")
 
     start = st.date_input('start date')
     end = st.date_input('end date')
+
+    st.markdown("### Data Source:")
+    st.markdown("This data come from [Google Trends](https://trends.google.com/trends/)")
 
 
 pytrends = TrendReq(hl='fr-FR', tz=360)
