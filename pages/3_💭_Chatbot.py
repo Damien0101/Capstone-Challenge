@@ -46,7 +46,7 @@ def initialize_qa_chain(txt_path):
 
     return qa_chain
 
-txt_path = 'titles.txt' 
+txt_path = 'data/titles.txt' 
 if gemini_api_key and txt_path:
     qa_chain = initialize_qa_chain(txt_path)
 

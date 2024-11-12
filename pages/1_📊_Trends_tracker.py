@@ -20,13 +20,13 @@ with st.sidebar:
     st.markdown("This data come from [Google Trends](https://trends.google.com/trends/)")
 
 
-pytrends = TrendReq(hl='fr-FR', tz=360, retries=5)
+pytrends = TrendReq(hl='fr-FR', tz=360)
 user_input = st.text_input(label='**Enter a word/sentence**')
 
 if user_input:
     if start and end:
         timeframe = f'{start.strftime("%Y-%m-%d")} {end.strftime("%Y-%m-%d")}'
-        pytrends.build_payload([user_input], cat=0, timeframe=timeframe, geo='BE')
+        pytrends.build_payload([user_input], cat=0, timeframe='today 5-y', geo='BE')
         trend_data = pytrends.interest_over_time()
 
         if not trend_data.empty:

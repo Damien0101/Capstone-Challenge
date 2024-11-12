@@ -45,7 +45,7 @@ st.markdown("""
 st.markdown("---")
 st.markdown("**Let's find some ideas.. 🔎**")
 
-first, second = st.columns(2)
+first, second, third = st.columns(3)
 
 with first:
     trend_tracking = st.button("Trends tracker")
@@ -57,3 +57,9 @@ with second:
     trend_tracking = st.button("Coverage analyzer")
     if trend_tracking:
         switch_page("Coverage analyzer")
+
+
+with third:
+    trend_tracking = st.button("Chatbot")
+    if trend_tracking:
+        switch_page("Chatbot")
