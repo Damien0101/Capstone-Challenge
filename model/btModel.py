@@ -15,9 +15,6 @@ all_articles = [a for a in articles if a != '']
 topic_model = BERTopic()
 topics, probs = topic_model.fit_transform(all_articles)
 
-topic_model = BERTopic()
-topics, probs = topic_model.fit_transform(all_articles)
-
 topic_info = topic_model.get_topic_info()
 
 topic_info_filtered = topic_info[topic_info['Topic'] != -1]
