@@ -2,11 +2,12 @@ from concurrent.futures import ThreadPoolExecutor
 import requests
 import datetime
 import json
+from tqdm import tqdm
 
 
 def scraper(urls):
     lst = []
-    res = requests.get(urls).text
+    res = tqdm(requests.get(urls).text)
 
     for a in json.loads(res)["data"]["articles"]:
         articles = {
